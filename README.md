@@ -1,24 +1,5 @@
-# README
+# RISC OS Open Forum
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails application created via [`thredded_create_app`](https://github.com/risc-os-open/**thredded_create_app**) which creates a basic forum application based on the [Thredded](https://github.com/risc-os-open/thredded) engine.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Install via the usual for Rails 5 - `bundle install`, set up `config/database.yml` and so-on.

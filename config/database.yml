@@ -1,37 +1,23 @@
-<%
-db_host    = ENV.fetch('DB_HOST', ENV.fetch('ROOL_FORUM_DB_1_PORT_5432_TCP_ADDR', 'localhost'))
-db_port    = ENV['ROOL_FORUM_DB_1_PORT_5432_TCP_PORT'] || ENV['DB_PORT'] || 5432
-require 'etc'
-pool_size =
-  # Web: max workers * max threads
-  ENV.fetch('WEB_CONCURRENCY', 3).to_i * ENV.fetch('MAX_THREADS', 5).to_i +
-  # ActiveJob Async max thread pool size
-  Etc.nprocessors
-ERB
-%>
+# PostgreSQL database configuration. Syntax taken from
+# "http://blog.bleything.net/" (Ben Bleything, June 2006).
 
-defaults: &defaults
+dbinfo: &dbinfo
   adapter: postgresql
-  min_messages: WARNING
-  pool: <%= pool_size %>
-  host: <%= db_host %>
-  port: <%= db_port %>
-  username: <%= ENV.fetch('DB_USERNAME', 'rool_forum_dev').inspect %>
-  password: <%= ENV.fetch('DB_PASSWORD', "rool_forum").inspect %>
-  encoding: utf8
+  username: adh1003
+
+# Warning: The database defined as 'test' will be erased and
+# re-generated from your development database when you run 'rake'.
+# Do not set this db to the same as development or production.
 
 development:
-  <<: *defaults
-  database: rool_forum_dev
+  <<: *dbinfo
+  database: thredded-devel
 
 test:
-  <<: *defaults
-  database: rool_forum_test
-
+  <<: *dbinfo
+  database: thredded-test
 
 production:
-  <<: *defaults
-  encoding: utf8
+  <<: *dbinfo
   min_messages: WARNING
-  url: <%= ENV['DATABASE_URL'].inspect if ENV['DATABASE_URL'] %>
-  database: <%= 'rool_forum_prod' unless ENV['DATABASE_URL'] %>
+  database: thredded

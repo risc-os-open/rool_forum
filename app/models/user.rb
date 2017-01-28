@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   validates :display_name, presence: true, uniqueness: true
   before_validation :uniq_display_name!, on: :create
 
@@ -9,8 +10,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  private
+         :recoverable, :rememberable, :validatable
+private
 
   # Makes the display_name unique by appending a number to it if necessary.
   # "Gleb" => Gleb 1"

@@ -29,22 +29,11 @@
     }
   };
 
-  if (isTurbolinks5) {
-    document.addEventListener('turbolinks:load', function () {
+  // Turbolinks Classic (with or without jQuery.Turbolinks), or no Turbolinks:
+  if (!App.DOMContentLoadedFired) {
+    document.addEventListener('DOMContentLoaded', function () {
       triggerOnPageLoad();
     });
-  } else {
-    // Turbolinks Classic (with or without jQuery.Turbolinks), or no Turbolinks:
-    if (!App.DOMContentLoadedFired) {
-      document.addEventListener('DOMContentLoaded', function () {
-        triggerOnPageLoad();
-      });
-    }
-    if (isTurbolinks) {
-      document.addEventListener('page:load', function () {
-        triggerOnPageLoad();
-      })
-    }
   }
 
   App.isAppPage = function() {
